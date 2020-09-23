@@ -8,12 +8,13 @@ def get_coverage_from(coverage_path, mapping):
         with open("{}/{}".format(coverage_path, file_path)) as f:
             json_data = json.load(f)
             for coverage_file in json_data["files"]:
-                if coverage_file not in mapping:
-                    mapping[coverage_file] = dict()
+                src_file = os.path.basename(coverage_file)
+                if src_file not in mapping:
+                    mapping[src_file] = dict()
                 for covered_line in json_data["files"][coverage_file]["executed_lines"]:
-                    if covered_line not in mapping[coverage_file]:
-                        mapping[coverage_file][covered_line] = []
-                    mapping[coverage_file][covered_line].append(file_path)
+                    if covered_line not in mapping[src_file]:
+                        mapping[src_file][covered_line] = []
+                    mapping[src_file][covered_line].append(file_path)
 
 
 line_to_test = dict()
