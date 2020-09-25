@@ -1,6 +1,5 @@
 def incr(x):
-    x += 1
-    return x
+    return x + 1
 
 
 def decr(x):
